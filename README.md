@@ -5,9 +5,10 @@ Turns CSV entries into [Deep Security global rules](https://help.deepsecurity.tr
 ## Usage
 
 1. Install the Deep Security API package: `pip3 install deep-security-api` 
-2. Set the `DS_KEY` environment variable to your DS API key
-3. Modify the `rules.csv` file to suit your needs.
-4. Run the script: ```python3 run.py```
+2. Set the `DS_KEY` environment variable to your DS API key.
+3. (Optional) Set the `DS_API_ADDRESS` environment variable to your DS API address (default: https://app.deepsecurity.trendmicro.com/api)
+4. Modify the `rules.csv` file to suit your needs.
+5. Run the script: ```python3 run.py```
 
 ### Example Output
 
