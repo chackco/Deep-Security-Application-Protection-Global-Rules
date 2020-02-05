@@ -158,11 +158,75 @@ class AppControlRuleSets:
             new_rule.sha256 = rule_hash
             new_rules.append(new_rule)
 
-
         return new_rules
 
-    def create_global_rules(self, rules_array) -> None:
-        """Creates global rules on Deep Security"""
+    def create_global_rules(self, rules_array) -> api.models.application_control_global_rules.ApplicationControlGlobalRules:
+        """Creates global rules on Deep Security
+
+        Example:
+
+            {'application_control_global_rules': [{'action': 'block',
+               'description': '',
+               'id': 34,
+               'last_updated': 1580783107664,
+               'last_updated_administrator': 34,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9069'},
+              {'action': 'block',
+               'description': 'demo',
+               'id': 35,
+               'last_updated': 1580783365699,
+               'last_updated_administrator': 34,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9068'},
+              {'action': 'block',
+               'description': 'demo',
+               'id': 36,
+               'last_updated': 1580783934705,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9022'},
+              {'action': 'block',
+               'description': 'demo',
+               'id': 37,
+               'last_updated': 1580784663099,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9023'},
+              {'action': 'block',
+               'description': 'demo_1',
+               'id': 67,
+               'last_updated': 1580867088483,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9011'},
+              {'action': 'block',
+               'description': 'demo_3',
+               'id': 68,
+               'last_updated': 1580867088495,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9033'},
+              {'action': 'block',
+               'description': 'demo_4',
+               'id': 69,
+               'last_updated': 1580867188053,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9044'},
+              {'action': 'block',
+               'description': 'demo_5',
+               'id': 70,
+               'last_updated': 1580867476445,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9055'},
+              {'action': 'block',
+               'description': 'demo_6',
+               'id': 71,
+               'last_updated': 1580867996552,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9066'},
+              {'action': 'block',
+               'description': 'demo_7',
+               'id': 72,
+               'last_updated': 1580868101929,
+               'last_updated_administrator': 100,
+               'sha256': '7F83B1657FF1FC53B92DC18148A1D65DFC2D4B1FA3D677284ADDD200126D9077'}]}
+
+        """
 
         global_rules_api = api.GlobalRulesApi(self.api_client)
         rules_list = api.ApplicationControlGlobalRules()
@@ -171,7 +235,11 @@ class AppControlRuleSets:
         try:
             global_rules_api.add_global_rules(rules_list, self.api_version)
             api_response = global_rules_api.list_global_rules(self.api_version)
+
+            print('\nUpdated Deep Security global rule list:')
             pprint(api_response)
+
+            return api_response
 
         except ApiException as e:
             self._format_exception(e)
