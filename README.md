@@ -4,8 +4,9 @@ Turns CSV entries into [Deep Security global rules](https://help.deepsecurity.tr
 
 ## Usage
 
-1. Modify the `rules.csv` file to suit your needs.
-2. Run the script: ```python3 run.py```
+1. Install the Deep Security API package: `pip3 install deep-security-api` 
+2. Modify the `rules.csv` file to suit your needs.
+3. Run the script: ```python3 run.py```
 
 ### Example Output
 
